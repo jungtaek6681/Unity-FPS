@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerShooter : MonoBehaviour
 {
 	[SerializeField]
+	private Animator gunAnim;
+	[SerializeField]
+	private Animator playerAnim;
+
+	[SerializeField]
 	private int damage;
 
 	private void Update()
@@ -15,6 +20,9 @@ public class PlayerShooter : MonoBehaviour
 
 	private void Shoot()
 	{
+		gunAnim.SetTrigger("Shoot");
+		playerAnim.SetTrigger("Shoot");
+
 		RaycastHit hit;
 		if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
 		{
