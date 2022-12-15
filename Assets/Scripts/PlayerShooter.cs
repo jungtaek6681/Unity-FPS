@@ -12,6 +12,9 @@ public class PlayerShooter : MonoBehaviour
 	[SerializeField]
 	private int damage;
 
+	[SerializeField]
+	private float bulletForce;
+
 	private void Awake()
 	{
 		anim = GetComponentInChildren<Animator>();
@@ -33,6 +36,9 @@ public class PlayerShooter : MonoBehaviour
 		{
 			IDamagable target = hit.transform.GetComponent<IDamagable>();
 			target?.TakeDamage(damage);
+
+			IBulletTakable bulletTakable = hit.transform.GetComponent<IBulletTakable>();
+			bulletTakable?.TakeBullet(hit.point, hit.normal, bulletForce);
 		}
 	}
 }
