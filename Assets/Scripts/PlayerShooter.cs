@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
+	private Animator anim;
+
 	[SerializeField]
-	private Animator gunAnim;
-	[SerializeField]
-	private Animator playerAnim;
+	private GunGFX gun;
 
 	[SerializeField]
 	private int damage;
+
+	private void Awake()
+	{
+		anim = GetComponentInChildren<Animator>();
+	}
 
 	private void Update()
 	{
@@ -20,8 +25,8 @@ public class PlayerShooter : MonoBehaviour
 
 	private void Shoot()
 	{
-		gunAnim.SetTrigger("Shoot");
-		playerAnim.SetTrigger("Shoot");
+		gun.Shoot();
+		anim.SetTrigger("Shoot");
 
 		RaycastHit hit;
 		if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
