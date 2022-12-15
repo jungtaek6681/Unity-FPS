@@ -28,6 +28,8 @@ public class PlayerShooter : MonoBehaviour
 
 	private void Shoot()
 	{
+		GameManager.Instance.shootCount++;
+
 		gun.Shoot();
 		anim.SetTrigger("Shoot");
 
